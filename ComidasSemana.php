@@ -65,7 +65,7 @@ switch (date('w', $fechats)){
         $consIng=mysql_query($sqlIngre);
         while ($fileIng=mysql_fetch_object($consIng)) 
         {
-          echo utf8_encode($fileIng->nombre." [$".$fileIng->precio."] <br>");
+          echo utf8_encode($fileIng->nombre." <b>$".$fileIng->precio."</b> <br>");
         }
          ?>
 
