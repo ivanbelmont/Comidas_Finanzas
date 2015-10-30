@@ -1,4 +1,3 @@
-hola
 <?php 
 
 include 'conexion.php' ;
@@ -9,12 +8,12 @@ $fechas=$_GET['fechas'];
 
 for ($i=0; $i <count($checkbox) ; $i++) {
 
-echo $checkbox[$i]; 
-echo $fechas[$i];
+ $sql="UPDATE historico SET fecha_preparacion='".$fechas[$i]."', fecha_repeticion = (SELECT CURDATE()+ INTERVAL 15 DAY HOY FROM DUAL)
+WHERE id_comida= ".$checkbox[$i];
+mysql_query($sql);
+//echo $checkbox[$i]; 
+//echo $fechas[$i];
 }
 
-
-$sql="SELECT * FROM comida where id= ".$checkbox[1];
-
-mysql_query($sql);
+header("location: ComidasSemana.php")
 ?>

@@ -33,9 +33,9 @@ setlocale(LC_ALL,"esp");
 <div data-role="page">
 
   <div data-role="header" data-position="fixed">
-    <a href="index2.php" data-transition="flip" >Comidas para esta semana</a>
+    <a href="ComidasSemana.php" data-transition="flip" >Comidas para esta semana</a>
 
-    <a href="index2.php" data-transition="pop" >Comidas y recetas</a>
+    <a href="addcomida.php" data-transition="pop" >Comidas y recetas</a>
     <h1>Comidas por hacer</h1>
     <?php 
 $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
@@ -139,7 +139,7 @@ echo $fecha=$dayL." ".$day." de ".$month." del ".$year;
 <div  data-role="fieldcontain">
         <fieldset data-role="controlgroup">
            <h1>Comidas disponibles</h1>
-           <form action='procesar.php' method='GET'>
+           <form action='procesar.php' method='GET' data-ajax="false">
 
            <?php
            $sql="SELECT DISTINCT c.id,c.nombre,h.fecha_preparacion FROM historico h, comida c
