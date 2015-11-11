@@ -19,7 +19,7 @@ setlocale(LC_ALL,"esp");
 
   <div data-role="header" data-position="fixed">
     <a href="index.php" data-transition="flip" >Principal</a>
-    <a href="addcomida.php" data-transition="pop" >Comidas y recetas</a>
+    <a href="CatComidas.php" data-transition="pop" >Comidas y recetas</a>
     <h1>Comidas de la semana</h1>
   </div><!-- /header -->
 
@@ -35,7 +35,7 @@ setlocale(LC_ALL,"esp");
         <?php $sqlcomida= "select * from comida c,historico h
 where h.id_comida=c.id
 order by h.fecha_preparacion DESC
-LIMIT 5;";
+LIMIT 7;";
         $ConsCom=mysql_query($sqlcomida);
 
         while ($filecom=mysql_fetch_object($ConsCom)) {

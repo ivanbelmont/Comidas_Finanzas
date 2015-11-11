@@ -28,6 +28,43 @@ setlocale(LC_ALL,"esp");
     $(function(){
       $( ".date-input-css" ).datepicker();
     })
+
+
+    function agregar(id,name)
+    {
+      var Nombre=name;
+      var ProductoNId=id;
+    //  if ( document.getElementById(ProductoNId)) {
+      var ContId=document.getElementById(ProductoNId);             
+        var checkedValue = $('#checkbox-'+ProductoNId+':checked').val();
+    if (checkedValue)
+    {
+//alert("Check");
+  //  campo = '<input type="date" size="100" id="10128'+ProductoNId+'"&nbsp; value="" name="fechas[]" /><span title="Eliminar" onclick="eliminarProc('+ProductoNId+')">X</span></li><br>';
+    campo = '<input type="date" size="300" id="10128'+ProductoNId+'"&nbsp; value="" name="fechas[]" />';
+$("#"+ProductoNId).append(campo);//Agregar inputs creados
+    }//END IF
+    else
+    {
+//alert("Uncheck");
+eliminarProc('10128'+ProductoNId);
+    }//ENd ELSE
+  //alert("No existe, agregar");
+
+
+
+    }//END FUCTION agregar
+
+
+      function eliminarProc(elemento)
+        {
+       
+          //  var id=elemento.parentNode.getAttribute("id");
+            var id=elemento;
+            node=document.getElementById(id);
+            node.parentNode.removeChild(node);
+            
+        }
   </script>
 
 <div data-role="page">
@@ -139,7 +176,7 @@ echo $fecha=$dayL." ".$day." de ".$month." del ".$year;
 <div  data-role="fieldcontain">
         <fieldset data-role="controlgroup">
            <h1>Comidas disponibles</h1>
-           <form action='procesar.php' method='GET' data-ajax="false">
+           <form action='procesar.php' id="miform" method='GET' data-ajax="false">
 
            <?php
            $sql="SELECT DISTINCT c.id,c.nombre,h.fecha_preparacion FROM historico h, comida c
@@ -149,10 +186,19 @@ echo $fecha=$dayL." ".$day." de ".$month." del ".$year;
 
                       $cons=mysql_query($sql);
                       while ($file=mysql_fetch_object($cons)) {
+
+                        $sqlPrecio="SELECT SUM(precio) PRECIO FROM ingredientes WHERE id_comida=$file->id;";
+
+                        $precons=mysql_query($sqlPrecio);
+                        $filePre=mysql_fetch_array($precons);
                           ?> 
-                          <input type="checkbox" value="<?php echo $file->id; ?>" name='checkbox[]' id="checkbox-<?php echo $id; ?>" class="custom" />
-                          <label for="checkbox-<?php echo $id; ?>" ><?php echo $file->nombre; ?></label>
-                          <input type="date" name="fechas[]"><br><br>
+                          <input type="checkbox" onclick="agregar('<?php echo $file->id?>','<?php echo $file->nombre?>')"; value="<?php echo $file->id; ?>" name='checkbox[]' id="checkbox-<?php echo $id; ?>" class="custom" />
+                          <label for="checkbox-<?php echo $id; ?>" ><?php echo $file->nombre; ?>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <?php echo "Precio total Estimado $".$filePre['PRECIO']; ?></label>
+                         <!-- <input type="date" name="fechas[]"><br><br>-->
+                         <div data-role="fieldcontain" id ="<?php echo $file->id?>"></div>
                           <label >Ultima preparacion: <?php echo ConvetidorFechas($file->fecha_preparacion,3); ?></label>
                           <?php
                           $id+=1;

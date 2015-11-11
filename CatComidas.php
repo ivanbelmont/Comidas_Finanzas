@@ -24,7 +24,7 @@ setlocale(LC_ALL,"esp");
   </div><!-- /header -->
 
     <div class="ui-body">
-      <h1>Comidas para esta semana</h1>
+      <h1>Comidas</h1>
       <p>En esta seccion encontraras:
         <br><em>* Recetas</em>
         <br><em>* Videos</em>
@@ -34,8 +34,7 @@ setlocale(LC_ALL,"esp");
     
         <?php $sqlcomida= "select * from comida c,historico h
 where h.id_comida=c.id
-order by h.fecha_preparacion DESC
-LIMIT 5;";
+order by c.nombre DESC";
         $ConsCom=mysql_query($sqlcomida);
 
         while ($filecom=mysql_fetch_object($ConsCom)) {

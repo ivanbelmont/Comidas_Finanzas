@@ -40,11 +40,11 @@ CREATE TABLE `historico` (
   `fecha_repeticion` date DEFAULT NULL,
   `id_comida` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `historico` */
 
-insert  into `historico`(`id`,`fecha_preparacion`,`fecha_repeticion`,`id_comida`) values (1,'2015-10-28','2015-10-28',1),(3,'2015-10-29','2015-10-29',2),(4,'2015-12-04','2015-11-14',3);
+insert  into `historico`(`id`,`fecha_preparacion`,`fecha_repeticion`,`id_comida`) values (1,'2015-11-03','2015-11-02',1),(3,'2015-11-04','2015-11-02',2),(4,'2015-11-05','2015-10-26',3),(5,'2015-11-06','2015-11-06',4);
 
 /*Table structure for table `ingredientes` */
 
@@ -56,11 +56,11 @@ CREATE TABLE `ingredientes` (
   `precio` int(11) DEFAULT NULL,
   `id_comida` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ingredientes` */
 
-insert  into `ingredientes`(`id`,`nombre`,`precio`,`id_comida`) values (1,'Lata de Atun',10,1),(2,'Lata de Champiñones',12,1),(3,'Lata de Elotes',15,1),(4,'Mayonesa ch',15,1),(5,'1/2 Pollo',50,2),(6,'Empanizador',15,2);
+insert  into `ingredientes`(`id`,`nombre`,`precio`,`id_comida`) values (1,'Lata de Atun',10,1),(2,'Lata de Champiñones',12,1),(3,'Lata de Elotes',15,1),(4,'Mayonesa ch',15,1),(5,'1/2 Pollo',50,2),(6,'Empanizador',15,2),(7,'Tortilla 1/4',10,3);
 
 /*Table structure for table `preparacion` */
 
@@ -90,9 +90,11 @@ CREATE TABLE `videos` (
   `fecha_video` date NOT NULL DEFAULT '0000-00-00',
   `id_comida` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_video`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `videos` */
+
+insert  into `videos`(`id_video`,`nombre`,`url`,`fecha_video`,`id_comida`) values (1,'Musica Epica','guXMb7zLblM','2015-10-27',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
